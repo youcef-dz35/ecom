@@ -20,7 +20,12 @@ class CheckoutController extends Controller
     {
         //
 
-
+        if (Cart::instance('default')->count()==0) {
+          return redirect('')->route('shop.index');
+        }
+        if(auth()->user() && request()->is('guestCheckout')){
+          return redirect()->route('checkout.index');
+        }
 
 
         return view('checkout')->with([

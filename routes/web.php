@@ -39,12 +39,22 @@ Route::get('empty',function(){
 
 });
 
-
-Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+//we used this middleware to make sure that the user proceding to checkout is a logged user
+Route::get('/checkout', 'CheckoutController@index')->name('checkout.index')->middleware('auth');
 Route::post('/checkout', 'CheckoutController@store')->name('checkout.store');
 Route::get('/thankyou', 'ConfirmationController@index')->name('confirmation.index');
+Route::get('/guestCheckout', 'CheckoutController@index')->name('guestCheckout.index');
 
 
 
 Route::post('/coupon','CouponsController@store')->name('coupon.store');
 Route::delete('/coupon','CouponsController@destroy')->name('coupon.destroy');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

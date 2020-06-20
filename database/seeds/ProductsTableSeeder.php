@@ -35,6 +35,7 @@ class ProductsTableSeeder extends Seeder
                    'price' => rand(249999, 449999),
                    'description' => 'Lorem ' . $i . ' ipsum dolor sit amet, consectetur adipisicing elit. Ipsum temporibus iusto ipsa, asperiores voluptas unde aspernatur praesentium in? Aliquam, dolore!',
                ])->categories()->attach(2);
+            
            }
 
 
