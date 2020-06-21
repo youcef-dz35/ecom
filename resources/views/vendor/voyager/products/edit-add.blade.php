@@ -89,8 +89,16 @@
                                     @endif
                                 </div>
                             @endforeach
-
-                            
+                            <div class="form-group">
+                                <label>Categories</label>
+                                <ul style="list-style-type: none; padding-left: 0;">
+                                    @foreach($allCategories as $category)
+                                        <li><label ><input value="{{$category->id}}" type="checkbox" name="category[]" style="margin-right: 5px;"
+                                          {{ $categoriesForProduct->contains($category) ? 'checked' : ''}} >{{$category->name}}</label> </li>
+                                    @endforeach
+                                    
+                                </ul>
+                            </div>
                             
 
                         </div><!-- panel-body -->
