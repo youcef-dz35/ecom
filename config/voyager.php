@@ -17,6 +17,8 @@ return [
         'redirect'                     => '/admin',
     ],
 
+
+    'adminPassword'=> env('ADMIN_PASSWORD','password'),
     /*
     |--------------------------------------------------------------------------
     | Controllers config
@@ -157,6 +159,7 @@ return [
     | When a change happens on Voyager, we can automate some routines.
     |
     */
+    
 
     'bread' => [
         // When a BREAD is added, create the Menu item using the BREAD properties.
