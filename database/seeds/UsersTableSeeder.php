@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             User::create([
                 'name'           => 'Admin',
                 'email'          => 'admin@admin.com',
-                'password'       => bcrypt(config('voyager.adminPassword')),
+                'password'       => bcrypt('ramc7659170503'),
                 'remember_token' => str::random(60),
                 'role_id'        => $role->id,
             ]);
