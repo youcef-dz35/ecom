@@ -11,5 +11,5 @@ function setActiveCategory($category, $output='active')
 }
 function productImage($path)
 {
-  return ($path != null) && file_exists('storage/'.$path) ? asset('storage/'.$path) : asset('img/not-found.jpg');
+  return $path && file_exists('storage/storage/'.$path) ? asset('storage/storage/'.$path) : asset('img/not-found.jpg');
 }
