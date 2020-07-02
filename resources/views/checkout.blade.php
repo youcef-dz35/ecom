@@ -8,6 +8,7 @@
 
 @endsection
 
+
 @section('content')
 
     <div class="container">
@@ -39,10 +40,10 @@
 
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        @if(auth()->user())
-                        <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
+                        @if (auth()->user())
+                            <input type="email" class="form-control" id="email" name="email" value="{{ auth()->user()->email }}" readonly>
                         @else
-                        <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
                         @endif
                     </div>
                     <div class="form-group">
@@ -113,12 +114,11 @@
                     @foreach (Cart::content() as $item)
                     <div class="checkout-table-row">
                         <div class="checkout-table-row-left">
-
-                            <img src="{{productImage($item->model->image) }}" alt="item" class="checkout-table-img">
+                            <img src="{{ productImage($item->model->image) }}" alt="item" class="checkout-table-img">
                             <div class="checkout-item-details">
                                 <div class="checkout-table-item">{{ $item->model->name }}</div>
                                 <div class="checkout-table-description">{{ $item->model->details }}</div>
-                                <div class="checkout-table-price">${{ $item->model->presentPrice() }}</div>
+                                <div class="checkout-table-price">{{ $item->model->presentPrice() }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
 
@@ -150,14 +150,14 @@
                     </div>
 
                     <div class="checkout-totals-right">
-                        ${{ presentPrice(Cart::subtotal()) }} <br>
+                        {{ presentPrice(Cart::subtotal()) }} <br>
                         @if (session()->has('coupon'))
-                            - ${{ presentPrice($discount) }} <br>
+                            -{{ presentPrice($discount) }} <br>
                             <hr>
-                            ${{ presentPrice($newSubtotal) }} <br>
+                            {{ presentPrice($newSubtotal) }} <br>
                         @endif
-                        ${{ presentPrice($newTax) }} <br>
-                        <span class="checkout-totals-total">${{ presentPrice($newTotal) }}</span>
+                        {{ presentPrice($newTax) }} <br>
+                        <span class="checkout-totals-total">{{ presentPrice($newTotal) }}</span>
 
                     </div>
                 </div> <!-- end checkout-totals -->
@@ -181,6 +181,7 @@
     </div>
 
 @endsection
+
 
 @section('extra-js')
     <script>
