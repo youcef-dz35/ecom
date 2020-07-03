@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,9 +17,13 @@ class OrderPlaced extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $order;
+     
+    
+    public function __construct(Order $order)
     {
-        //
+        $this->order= $order;
     }
 
     /**
@@ -28,10 +33,9 @@ class OrderPlaced extends Mailable
      */
     public function build()
     {
-        return $this->from('admin@admin.com','Admin')
-                    ->to('kebiryoucef07@gmail.com','Hello youcef')
+        return $this->to($this->order->billing_email,$this->order->billing_name)
                     ->bcc('another@another.com')
                     ->subject('Subject line for the Email')
-                    ->view('emails.orders.placed');
+                    ->markdown('emails.orders.placed');
     }
 }

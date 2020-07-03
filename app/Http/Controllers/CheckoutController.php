@@ -81,8 +81,8 @@ class CheckoutController extends Controller
               ],
           ]);
           
-          $this->addToOrdersTables($request, null);
-          Mail::send(new OrderPlaced);
+          $order = $this->addToOrdersTables($request, null);
+          Mail::send(new OrderPlaced($order));
           Cart::instance('default')->destroy();
           session()->forget('coupon');
 
@@ -218,6 +218,7 @@ class CheckoutController extends Controller
           'quantity' =>$item->qty,
         ]);
       }
+      return $order;
     }
 
     private function getNumbers(){

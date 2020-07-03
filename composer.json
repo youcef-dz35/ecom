@@ -12,6 +12,7 @@
         "cartalyst/stripe-laravel": "11.x",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "6.4",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravel/ui": "1.*",

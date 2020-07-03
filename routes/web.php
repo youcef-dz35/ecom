@@ -12,8 +12,6 @@
 */
 
 use \Cart as Cart;
-
-
 Route::get('/', 'LandingPageController@index')->name('landing-page');
 
 Route::get('/shop', 'ShopController@index')->name('shop.index');
@@ -58,3 +56,8 @@ Route::group(['prefix' => 'admin'], function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/mailable',function(){
+    $order = App\Order::find(1);
+    return new App\Mail\OrderPlaced($order);
+});
