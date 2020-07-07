@@ -10,6 +10,11 @@
 
 
 @section('content')
+    @component('components.breadcrumbs')
+      <a href="/">Home</a>
+      <i class="fa fa-chevron-right breadcrumb-separator"></i>
+      <span>Shop</span>
+    @endcomponent
 
     <div class="container">
 

@@ -9,16 +9,20 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "algolia/algoliasearch-client-php": "2.2",
         "cartalyst/stripe-laravel": "11.x",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "6.4",
         "laravel/framework": "^6.0",
+        "laravel/scout": "^8.0",
         "laravel/tinker": "^1.0",
         "laravel/ui": "1.*",
+        "nicolaslopezj/searchable": "^1.13",
         "olimortimer/laravelshoppingcart": "^4.0",
         "stripe/stripe-php": "^7.33",
         "tcg/voyager": "^1.4"
+        
     },
     "require-dev": {
         "filp/whoops": "^2.0",

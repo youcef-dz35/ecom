@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use Cartalyst\Stripe\Api\Products;
+
 class ShopController extends Controller
 {
     /**
@@ -115,5 +118,16 @@ class ShopController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function search(Request $request)
+    {
+      $request->validate([
+        'query' => 'required|min:3'
+      ]);
+
+      $query = $request->input('query');
+      $products= Product::where('name', 'LIKE', "%{$query}%")->paginate(10);
+     // $products = Product::search($query)->paginate(10);
+      return view('search-results')->with('products',$products);
     }
 }

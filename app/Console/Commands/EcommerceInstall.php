@@ -3,7 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
+
+
+use Illuminate\Support\Facades\Storage;
+
 
 class EcommerceInstall extends Command
 {
@@ -49,26 +52,32 @@ class EcommerceInstall extends Command
 
     protected function proceed()
     {
-        File::deleteDirectory(public_path('storage/products'));
-        File::deleteDirectory(public_path('storage/settings'));
-        File::deleteDirectory(public_path('storage/pages'));
-        File::deleteDirectory(public_path('storage/posts'));
-        File::deleteDirectory(public_path('storage/users'));
+        
+        Storage::deleteDirectory(public_path('storage/products'));
+        Storage::deleteDirectory(public_path('storage/settings'));
+        Storage::deleteDirectory(public_path('storage/pages'));
+        Storage::deleteDirectory(public_path('storage/posts'));
+        Storage::deleteDirectory(public_path('storage/users'));
 
         $this->callSilent('storage:link');
-        $copySuccess = File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
+        $this->info('DELETING SUCCESSFUL');
+        $copySuccess = \File::copyDirectory(public_path('img/products'), public_path('storage/products/dummy'));
         if ($copySuccess) {
             $this->info('Images successfully copied to storage folder.');
         }
 
-        File::copyDirectory(public_path('img/pages'), public_path('storage/pages'));
-        File::copyDirectory(public_path('img/posts'), public_path('storage/posts'));
-        File::copyDirectory(public_path('img/users'), public_path('storage/users'));
+        \FILE::copyDirectory(public_path('img/pages'), public_path('storage/pages'));
+        \FILE::copyDirectory(public_path('img/posts'), public_path('storage/posts'));
+        \FILE::copyDirectory(public_path('img/users'), public_path('storage/users'));
 
-        $this->call('migrate:fresh', [
-            '--seed' => true,
-            '--force' => true,
-        ]);
+        try {
+            $this->call('migrate:fresh', [
+                '--seed' => true,
+                '--force' => true,
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Your products table is NOT seeded correctly. If you are not using Algolia, remove Laravel\Scout\Searchable from App\Product');
+        }
 
         $this->call('db:seed', [
             '--class' => 'VoyagerDatabaseSeeder',
@@ -124,6 +133,20 @@ class EcommerceInstall extends Command
             '--class' => 'UsersTableSeederCustom',
             '--force' => true,
         ]);
+
+        
+
+        try {
+            $this->call('scout:clear', [
+                'model' => 'App\\Product',
+            ]);
+
+            $this->call('scout:import', [
+                'model' => 'App\\Product',
+            ]);
+        } catch (\Exception $e) {
+            $this->error('Algolia credentials incorrect. Check your .env file. Make sure ALGOLIA_APP_ID and ALGOLIA_SECRET are correct.');
+        }
 
         $this->info('Dummy data installed');
     }
