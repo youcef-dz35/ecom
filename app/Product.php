@@ -17,12 +17,13 @@ class Product extends Model
    */
   public function toSearchableArray()
   {
-      $array = $this->toArray();
+    $array = $this->toArray();
 
-      // Customize array...
-      $arrey['name']= $this->name;
+    $extraFields = [
+        'categories' => $this->categories->pluck('name')->toArray(),
+    ];
 
-      return $array;
+    return array_merge($array, $extraFields);
   }
     //
     public function categories()

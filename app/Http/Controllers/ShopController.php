@@ -130,4 +130,18 @@ class ShopController extends Controller
      // $products = Product::search($query)->paginate(10);
       return view('search-results')->with('products',$products);
     }
+    public function searchAlgolia(Request $request)
+    {
+
+      return view('search-algolia');
+    }
+    public function testing()
+    {
+      $array = Product::find(1)->toArray();
+      $extraFields = [
+        'categories' => Product::find(1)->categories->pluck('name')->toArray(),
+      ];
+      //return array_merge($extraFields,$array );
+      return Product::all()->toArray();
+    }
 }

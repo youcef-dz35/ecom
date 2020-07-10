@@ -1,5 +1,5 @@
 (function() {
-    var client = algoliasearch('P53SZUIML8', '19f54cccab5efbeb0d351b307326a864');
+    var client = algoliasearch('PD57EI2ABF', 'a3983f72fae57fb7e9e8d1b45a85b10a');
     var index = client.initIndex('products');
     var enterPressed = false;
     //initialize autocomplete on search input (ID selector must match)

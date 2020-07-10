@@ -145,7 +145,7 @@ class EcommerceInstall extends Command
                 'model' => 'App\\Product',
             ]);
         } catch (\Exception $e) {
-            $this->error('Algolia credentials incorrect. Check your .env file. Make sure ALGOLIA_APP_ID and ALGOLIA_SECRET are correct.');
+            $this->error('Algolia credentials incorrect. Check your .env file.');
         }
 
         $this->info('Dummy data installed');
