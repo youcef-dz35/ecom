@@ -4,13 +4,13 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import InstantSearch from 'vue-instantsearch';
+//import InstantSearch from 'vue-instantsearch';
 
-require('./bootstrap');
+//require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.use(InstantSearch);
+//Vue.use(InstantSearch);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,8 +18,8 @@ Vue.use(InstantSearch);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue').default);
+//Vue.component('example', require('./components/Example.vue').default);
 
-const app = new Vue({
-    el: '#app'
-});
+//const app = new Vue({
+//    el: '#app'
+//});

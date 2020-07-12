@@ -145,6 +145,11 @@
             margin-left: 10px;
         }
     }
+    .auth-pages{
+        margin: 50px auto;
+        grid-template-columns: 1fr;
+        grid-gap: 40px;
+    }
 }
 
 /* Small Devices, Tablets */
