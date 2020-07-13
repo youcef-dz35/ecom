@@ -104,9 +104,9 @@
                         <span class="cart-totals-total">Total &nbsp;  <br>
                     </div>
                     <div class="cart-totals-subtotal">
-                        {{presentPrice(Cart::subtotal()) }}$ <br>
-                        {{presentPrice(Cart::tax())}}$ <br>
-                        <span class="cart-totals-total">{{presentPrice(Cart::total())}}$</span>
+                        $ {{presentPrice(Cart::subtotal()) }} <br>
+                        $ {{presentPrice(Cart::tax())}} <br>
+                        <span class="cart-totals-total">$ {{presentPrice(Cart::total())}}</span>
                     </div>
                 </div>
             </div> <!-- end cart-totals -->
@@ -186,8 +186,11 @@
 
 @section('extra-js')
 <script src="{{asset('js/app.js')}}"></script>
+
 <script>
+  
  (function () {
+   
    const classname= document.querySelectorAll('.quantity')
 
    Array.from(classname).forEach(function (element) {
@@ -212,7 +215,7 @@
 </script>
 @endsection
 @section('extra-js')
-
+ 
   <!-- Include AlgoliaSearch JS Client and autocomplete.js library -->
   <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>

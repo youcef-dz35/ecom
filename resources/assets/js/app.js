@@ -6,7 +6,7 @@
  */
 //import InstantSearch from 'vue-instantsearch';
 
-//require('./bootstrap');
+require('./bootstrap');
 
 window.Vue = require('vue');
 

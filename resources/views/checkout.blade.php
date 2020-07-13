@@ -8,13 +8,7 @@
 
 @endsection
 
-
 @section('content')
-    @component('components.breadcrumbs')
-      <a href="/">Home</a>
-      <i class="fa fa-chevron-right breadcrumb-separator"></i>
-      <span>Shop</span>
-    @endcomponent
 
     <div class="container">
 
@@ -123,7 +117,7 @@
                             <div class="checkout-item-details">
                                 <div class="checkout-table-item">{{ $item->model->name }}</div>
                                 <div class="checkout-table-description">{{ $item->model->details }}</div>
-                                <div class="checkout-table-price">{{ $item->model->presentPrice() }}</div>
+                                <div class="checkout-table-price">$ {{ $item->model->presentPrice() }}</div>
                             </div>
                         </div> <!-- end checkout-table -->
 
@@ -155,14 +149,14 @@
                     </div>
 
                     <div class="checkout-totals-right">
-                        {{ presentPrice(Cart::subtotal()) }} <br>
+                        $ {{ presentPrice(Cart::subtotal()) }} <br>
                         @if (session()->has('coupon'))
-                            -{{ presentPrice($discount) }} <br>
+                            -$ {{ presentPrice($discount) }} <br>
                             <hr>
-                            {{ presentPrice($newSubtotal) }} <br>
+                           $ {{ presentPrice($newSubtotal) }} <br>
                         @endif
-                        {{ presentPrice($newTax) }} <br>
-                        <span class="checkout-totals-total">{{ presentPrice($newTotal) }}</span>
+                        $ {{ presentPrice($newTax) }} <br>
+                        <span class="checkout-totals-total">$ {{ presentPrice($newTotal) }}</span>
 
                     </div>
                 </div> <!-- end checkout-totals -->
@@ -186,7 +180,6 @@
     </div>
 
 @endsection
-
 
 @section('extra-js')
     <script>
